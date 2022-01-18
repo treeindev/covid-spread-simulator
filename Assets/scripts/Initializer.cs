@@ -9,7 +9,7 @@ public class Initializer : MonoBehaviour
     
     private List<GameObject> subjects = new List<GameObject>();
     private int subjectsNumber = 200;
-    private int initialInfectionProbability = 10;
+    private int initialInfectionProbability = 1;
     private bool initializedInfection = false;
     private int complianceProbability = 70;
 
