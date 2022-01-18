@@ -15,9 +15,9 @@ public static class Constants
 
   // Home coordinates
   public static float[] HOME_TOP_LEFT = new float[]{-13.4f, 0.0f};
-  public static float[] HOME_TOP_RIGHT = new float[]{0.0f, 0.0f};
+  public static float[] HOME_TOP_RIGHT = new float[]{-11.0f, 0.0f};
   public static float[] HOME_BOTTOM_LEFT = new float[]{-13.4f, -10.0f};
-  public static float[] HOME_BOTTOM_RIGHT = new float[]{0.0f, -10.0f};
+  public static float[] HOME_BOTTOM_RIGHT = new float[]{-11.0f, -10.0f};
 
   // Park coordinates
   public static float[] PARK_TOP_LEFT = new float[]{0.0f, 0.0f};
@@ -26,9 +26,9 @@ public static class Constants
   public static float[] PARK_BOTTOM_RIGHT = new float[]{13.4f, -10.0f};
 
   // Hospital coordinates
-  public static float[] HOSPITAL_TOP_LEFT = new float[]{0.0f, 10.0f};
+  public static float[] HOSPITAL_TOP_LEFT = new float[]{8.0f, 10.0f};
   public static float[] HOSPITAL_TOP_RIGHT = new float[]{13.4f, 10};
-  public static float[] HOSPITAL_BOTTOM_LEFT = new float[]{0.0f, 0.0f};
+  public static float[] HOSPITAL_BOTTOM_LEFT = new float[]{8.0f, 0.0f};
   public static float[] HOSPITAL_BOTTOM_RIGHT = new float[]{13.4f, 0.0f};
 
   // Materials
@@ -51,7 +51,9 @@ public static class Constants
   public static int SUBJECT_VACCINED_PERCENTAGE = 50;
   // Percentage of probability of infection when contact with positive based on protection
   public static int SUBJECT_CONTACT_BOTH_PROTECTED = 0;
-  public static int SUBJECT_CONTACT_ONE_PROTECTED = 30;
-  public static int SUBJECT_CONTACT_NONE_PROTECTED = 75;
-
+  public static int SUBJECT_CONTACT_ONE_PROTECTED = 20;
+  public static int SUBJECT_CONTACT_NONE_PROTECTED = 50;
+  public static float SUBJECT_QUARANTINE_TIME = 5.0f;
+  public static int SUBJECT_VACCINED_SEVERE_INFECTION_PROBABILITY = 10;
+  public static int SUBJECT_NONVACCINED_SEVERE_INFECTION_PROBABILITY = 70;
 }

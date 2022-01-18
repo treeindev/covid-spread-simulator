@@ -8,7 +8,7 @@ public class Initializer : MonoBehaviour
     public Text GUIText;
     
     private List<GameObject> subjects = new List<GameObject>();
-    private int subjectsNumber = 500;
+    private int subjectsNumber = 200;
     private int initialInfectionProbability = 10;
     private bool initializedInfection = false;
     private int complianceProbability = 70;
@@ -50,6 +50,10 @@ public class Initializer : MonoBehaviour
     void Update()
     {
         int nInfected = 0;
+        int nWearingMask = 0;
+        int nVaccined = 0;
+        int nInQuarantine = 0;
+        int nInHospital = 0;
 
         for(var i=0; i<this.subjectsNumber; i++)
         {
@@ -58,9 +62,31 @@ public class Initializer : MonoBehaviour
             if (instance.isSubjectInfected) {
                 nInfected++;
             }
+
+            if (instance.isSubjectWearingMask) {
+                nWearingMask++;
+            }
+
+            if (instance.isSubjectVaccined) {
+                nVaccined++;
+            }
+
+            if (instance.isSubjectInQuarantine) {
+                nInQuarantine++;
+            }
+
+            if (instance.isSubjectInHospital) {
+                nInHospital++;
+            }
         }
 
-        var text = "Number of subjects: "+this.subjectsNumber+"\nNumber of infected: "+nInfected;
+        var text = "Number of subjects: "+this.subjectsNumber;
+        text = text+"\nNumber wearing mask: "+nWearingMask;
+        text = text+"\nNumber vaccined: "+nVaccined;
+        text = text+"\nNumber of infected: "+nInfected;
+        text = text+"\nNumber in quarantine: "+nInQuarantine;
+        text = text+"\nNumber in hospital: "+nInHospital;
+
         GUIText.text = text;
     }
 

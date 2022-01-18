@@ -21,6 +21,8 @@ public class Subject : MonoBehaviour
     public bool isSubjectInfected { get { return isInfected;} }
     public bool isSubjectWearingMask { get { return isWearingMask;} }
     public bool isSubjectVaccined { get { return isVaccined;} }
+    public bool isSubjectInQuarantine { get { return inQuarantine;} }
+    public bool isSubjectInHospital { get { return isHealing;} }
     public bool isSubjectDead { get { return isDead;} }
 
     // Start is called before the first frame update
@@ -42,6 +44,7 @@ public class Subject : MonoBehaviour
             this.setNewDestination();
         } else if (this.inQuarantine) {
             // Subject is currently in quarantine.
+            StartCoroutine(this.applyQuarantine());
             return;
         } else if (this.isHealing) {
             // Subject is healing at Hospital.
@@ -155,9 +158,11 @@ public class Subject : MonoBehaviour
             if (this.health < this.hospitalThreshold) {
                 // A subject that is infected and has low health should go to hospital.
                 this.destination = this.getHospitalCoordinates();
+                this.isHealing = true;
             } else {
                 // A subject that is infected and has high health should go to home.
                 this.destination = this.getHomeCoordinates();
+                this.inQuarantine = true;
             }   
         }
 
@@ -208,5 +213,28 @@ public class Subject : MonoBehaviour
     private bool isOneProtected(Subject subject1, Subject subject2)
     {
         return subject1.isSubjectWearingMask || subject2.isSubjectWearingMask;
+    }
+
+    // Submits subject to quarantine time.
+    private IEnumerator applyQuarantine()
+    {
+        // Wait for quarantine to finishh
+        yield return new WaitForSeconds(Constants.SUBJECT_QUARANTINE_TIME);
+
+        // Get outcome heath probability based on subject protection.
+        var severeInfectionProbability = 0;
+        if (this.isVaccined) {
+            severeInfectionProbability = Constants.SUBJECT_VACCINED_SEVERE_INFECTION_PROBABILITY;
+        } else {
+            severeInfectionProbability = Constants.SUBJECT_NONVACCINED_SEVERE_INFECTION_PROBABILITY;
+        }
+
+        var severeInfectionLevel = Random.Range(0, 100);
+        if (severeInfectionProbability > severeInfectionLevel) {
+            this.health = 10;
+        } else {
+            this.isInfected = false;
+        }
+        this.inQuarantine = false;
     }
 }
